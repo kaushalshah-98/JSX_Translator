@@ -10,7 +10,7 @@ class App extends Component {
       err: "",
     };
   }
-  update = (e) => {
+  translate = (e) => {
     const code = e.target.value;
     const presets = ["es2015", "react"];
     try {
@@ -25,7 +25,7 @@ class App extends Component {
       <div>
         <header>{this.state.err}</header>
         <div className="container">
-          <textarea onChange={this.update} defaultValue={this.state.input} />
+          <textarea onChange={this.translate} defaultValue={this.state.input} />
           <pre>{this.state.output}</pre>
         </div>
       </div>
