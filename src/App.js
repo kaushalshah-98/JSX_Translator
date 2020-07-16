@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      input: "/* Add your JSX Here */",
+      output: "",
+      err: "",
+    };
+  }
+  update = (e) => {
+    const code = e.target.value;
+    const presets = ["es2015", "react"];
+    try {
+      const output = window.Babel.transform(code, { presets }).code;
+      this.setState({ output, err: "" });
+    } catch (error) {
+      this.setState({ err: error.message });
+    }
+  };
+  render() {
+    return (
+      <div>
+        <header>{this.state.err}</header>
+        <div className="container">
+          <textarea onChange={this.update} defaultValue={this.state.input} />
+          <pre>{this.state.output}</pre>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
