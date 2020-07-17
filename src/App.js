@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Header from "./components/Header/header";
+import Pre from "./components/Pre/pre";
+import TextArea from "./components/TextArea/textarea";
 import "./App.css";
 
 class App extends Component {
@@ -23,10 +26,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header>{this.state.err}</header>
+        <Header>{this.state.err}</Header>
         <div className="container">
-          <textarea onChange={this.translate} defaultValue={this.state.input} />
-          <pre>{this.state.output}</pre>
+          <TextArea translate={this.translate} input={this.state.input} />
+          <Pre>{this.state.output}</Pre>
         </div>
       </div>
     );
